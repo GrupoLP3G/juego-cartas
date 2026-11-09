@@ -1,19 +1,26 @@
 package juego.modelo;
+import java.util.ArrayList;
+import java.util.List;
+
 import juego.excepciones.EnergiaInsuficienteException;
+import juego.modelo.cartas.Carta;
 public class Jugador
 {
+    private List<Carta> mano;
     private int vida,escudo,energia,marcasVeneno;
     private String nombre;
     private static final int VIDA_MAXIMA=30;
     private static final int ENERGIA_MAXIMA=6;
     public Jugador(String nombre)
     {
+        this.mano=new ArrayList<>();
         this.nombre=nombre;
         this.vida=VIDA_MAXIMA;
         this.energia=ENERGIA_MAXIMA;
         this.escudo=0;
         this.marcasVeneno=0;
     }
+    public List<Carta> getMano(){return this.mano;}
     public String getNombre(){return this.nombre;}
     public int getVida(){return this.vida;}
     public int getEnergia(){return this.energia;}
@@ -21,6 +28,9 @@ public class Jugador
     public int getMarcasVeneno(){return this.marcasVeneno;}
     public int getVidaMaxima(){return VIDA_MAXIMA;}
     public int getEnergiaMaxima(){return  ENERGIA_MAXIMA;}
+    public void agregarCartaMano(Carta carta){this.mano.add(carta);}
+    public Carta quitarCartaMano(int posicion){return this.mano.remove(posicion);}
+    public int getCantidadCartasMano(){return this.mano.size();}
     public boolean estaVivo()
     {
         return this.vida>0;
