@@ -67,10 +67,11 @@ public class Jugador
         this.escudo+=cantidad;
     }
     public void  reiniciarEscudo(){this.escudo=0;}
+    public boolean puedePagar(int costo){return estaAgotado()||this.energia>=costo;}
     public void gastarEnergia(int costo) throws EnergiaInsuficienteException
     {
         if(estaAgotado())return;
-        if(this.energia<costo)throw new EnergiaInsuficienteException(costo,this.energia);
+        if(!puedePagar(costo))throw new EnergiaInsuficienteException(costo,this.energia);
         this.energia-=costo;
     }
     public void recuperarEnergia(){this.energia=ENERGIA_MAXIMA;}
