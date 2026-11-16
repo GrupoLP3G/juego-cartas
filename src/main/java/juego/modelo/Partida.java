@@ -80,9 +80,11 @@ public class Partida
     }
     public void curarJugador(int cantidad)
     {
+        int vidaAntes=this.jugador.getVida();
         int cantidadFinal=aplicarDebilidad(cantidad);
         this.jugador.curar(cantidadFinal);
-        registrar("Recuperaste "+cantidadFinal+" de vida");
+        int vidaRecuperada=this.jugador.getVida()-vidaAntes;
+        registrar("Recuperaste "+vidaRecuperada+" de vida");
     }
     public void quitarVeneno()
     {
