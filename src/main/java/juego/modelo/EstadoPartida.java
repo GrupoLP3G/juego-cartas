@@ -8,7 +8,7 @@ public class EstadoPartida
     Jefe jefe;
     Mazo mazo;
     int turno;
-    public EstadoPartida(Jugador jugador,Jefe jefe,Mazo mazo,int turno)
+    EstadoPartida(Jugador jugador,Jefe jefe,Mazo mazo,int turno)
     {
         this.jugador=jugador;
         this.jefe=jefe;

@@ -27,3 +27,4 @@ public class Jefe
         if(this.vida<0)this.vida=0;
     }
 }
+        
