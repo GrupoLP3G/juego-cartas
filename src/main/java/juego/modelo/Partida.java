@@ -143,5 +143,18 @@ public class Partida
         {
             observador.alRegistrarMensaje(mensaje);
         }
-    }   
+    }
+    public EstadoPartida guardarEstado()
+    {
+        return  new EstadoPartida(new Jugador(jugador), new Jefe(jefe), new Mazo(mazo),turno);
+    }
+    public void restaurarEstado(EstadoPartida estado)
+    {
+        this.jugador=new Jugador(estado.getJugador());
+        this.jefe=new Jefe(estado.getJefe());
+        this.mazo=new Mazo(estado.getMazo());
+        this.turno=estado.getTurno();
+        notificarCambio();
+    }
+
 }

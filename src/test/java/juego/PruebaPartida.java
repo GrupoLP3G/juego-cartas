@@ -5,34 +5,10 @@ import juego.modelo.cartas.Escudo;
 import juego.modelo.cartas.Golpe;
 import juego.modelo.cartas.Pocion;
 import java.util.List;
-
 import juego.excepciones.JuegoException;
 import juego.modelo.Jugador;
 import juego.modelo.Mazo;
 import juego.modelo.jefes.Jefe;
-class ObservadorBitacora implements ObservadorPartida
-{
-    @Override
-    public void alCambiarPartida(Partida partida){}
-    @Override
-    public void alRegistrarMensaje(String mensaje)
-    {
-        System.out.println("[Bitácora] " + mensaje);
-    }
-}
-class ObservadorNumeros implements ObservadorPartida
-{
-    @Override 
-    public void alCambiarPartida(Partida partida)
-    {
-        Jefe jefe=partida.getJefe();
-        Jugador jugador=partida.getJugador();
-        System.out.println("[Numeros] Vida:"+jugador.getVida()+" Escudo:"+jugador.getEscudo()+" Energia:"+jugador.getEnergia()
-        +" Veneno:"+jugador.getMarcasVeneno()+" Mano:"+jugador.getCantidadCartasMano()+" Jefe:"+jefe.getVida());
-    }
-    @Override 
-    public void alRegistrarMensaje(String mensaje){}
-}
 public class PruebaPartida 
 {
     private static  void probarTurnoNormal() throws JuegoException
@@ -79,7 +55,7 @@ public class PruebaPartida
         partida.jugarCarta(0);
         partida.terminarTurno();
         partida.jugarCarta(0);
-        System.out.println("--- Paso 6");
+        System.out.println("--- Paso 6");   
         partida.quitarObservador(bitacora);
         partida.jugarCarta(0);
 

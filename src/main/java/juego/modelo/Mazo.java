@@ -14,6 +14,11 @@ public class Mazo
         this.descarte=new ArrayList<>();
         Collections.shuffle(this.cartasPorRobar);
     }    
+    public Mazo(Mazo otro)
+    {
+        this.cartasPorRobar=new ArrayList<>(otro.cartasPorRobar);
+        this.descarte=new ArrayList<>(otro.descarte);
+    }
     private void rebarajarDescarte()
     {
         this.cartasPorRobar.addAll(this.descarte);

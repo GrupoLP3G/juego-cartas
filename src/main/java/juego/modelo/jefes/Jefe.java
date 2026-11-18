@@ -11,9 +11,15 @@ public class Jefe
         this.vidaMaxima=vidaMaxima;
         this.vida=vidaMaxima;
     }
+    public Jefe(Jefe otro)
+    {
+        this.nombre=otro.nombre;
+        this.vidaMaxima=otro.vidaMaxima;
+        this.vida=otro.vida;
+    }
     public String getNombre(){return this.nombre;}
     public int getVida(){return this.vida;}
-    public int getvidaMaxima(){return this.vidaMaxima;}
+    public int getVidaMaxima(){return this.vidaMaxima;}
     public boolean estaVivo(){return this.vida>0;}
     public void recibirDanio(int cantidad)
     {

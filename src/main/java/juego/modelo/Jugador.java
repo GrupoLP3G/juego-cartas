@@ -20,6 +20,15 @@ public class Jugador
         this.escudo=0;
         this.marcasVeneno=0;
     }
+    public Jugador(Jugador otro)
+    {
+        this.mano=new ArrayList<>(otro.mano);
+        this.nombre=otro.nombre;
+        this.vida=otro.vida;
+        this.energia=otro.energia;
+        this.escudo=otro.escudo;
+        this.marcasVeneno=otro.marcasVeneno;
+    }
     public List<Carta> getMano(){return this.mano;}
     public String getNombre(){return this.nombre;}
     public int getVida(){return this.vida;}
