@@ -42,7 +42,7 @@ public class Partida
             return;
         }
         robarCartas(CARTAS_EN_MANO-this.jugador.getMano().size());
-        this.jefe.decidirIntencion();
+        this.jefe.decidirIntencion(this.jugador);
         registrar("Comienza el turno "+this.turno);
         registrar(this.jefe.getNombre()+" prepara: "+this.jefe.getIntencion().getDescripcion());
         notificarCambio();
@@ -75,9 +75,12 @@ public class Partida
     public boolean isGanada(){return !(this.jefe.estaVivo())&& this.jugador.estaVivo();}
     public void atacarJefe(int danio) 
     {
+        boolean estabaEnRabia=this.jefe.estaEnRabia();
         int danioFinal=aplicarDebilidad(danio);
         this.jefe.recibirDanio(danioFinal);
+        boolean estaEnRabia=this.jefe.estaEnRabia();
         registrar("Hiciste "+danioFinal+" de daño a "+this.jefe.getNombre());
+        if(!estabaEnRabia&& estaEnRabia)registrar(this.jefe.getNombre()+" se enojo");
     }
     public void agregarEscudo(int cantidad)
     {

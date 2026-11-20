@@ -8,13 +8,14 @@ import java.util.List;
 import juego.excepciones.JuegoException;
 import juego.modelo.Jugador;
 import juego.modelo.Mazo;
+import juego.modelo.jefes.EstrategiaFija;
 import juego.modelo.jefes.Jefe;
 public class PruebaPartida 
 {
     private static  void probarTurnoNormal() throws JuegoException
     {
         Jugador jugador= new Jugador("Fer");
-        Jefe jefe=new Jefe("El malo", 30);
+        Jefe jefe=new Jefe("El malo", 30, new EstrategiaFija(), new EstrategiaFija(), 0);
         Mazo mazo=new Mazo(List.of(new Golpe(),new Golpe(),new Escudo(),new Pocion(),new Pocion()));    
         ObservadorNumeros numeros= new ObservadorNumeros();
         ObservadorBitacora bitacora=new ObservadorBitacora();
@@ -40,7 +41,7 @@ public class PruebaPartida
         ObservadorBitacora bitacora=new ObservadorBitacora();
         Mazo mazo=new Mazo(List.of(new Golpe(),new Golpe(),new Golpe(),new Golpe(),new Golpe()
         ,new Golpe(),new Golpe(),new Golpe(),new Golpe()));
-        Jefe jefe=new Jefe("El malo inmortal", 100);
+        Jefe jefe=new Jefe("El malo", 30, new EstrategiaFija(), new EstrategiaFija(), 0);
         Jugador jugador= new Jugador("Fer");
         Partida partida=new Partida(jugador, jefe, mazo);
         partida.iniciarTurno();

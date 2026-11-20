@@ -10,6 +10,7 @@ import juego.modelo.Jugador;
 import juego.modelo.Mazo;
 import juego.modelo.Partida;
 import juego.modelo.cartas.Golpe;
+import juego.modelo.jefes.EstrategiaFija;
 import juego.modelo.jefes.Jefe;
 
 public class PruebaComandos 
@@ -18,7 +19,7 @@ public class PruebaComandos
     {
         Jugador jugador=new Jugador("Fre");
         Mazo mazo=new Mazo(List.of(new Golpe(),new Golpe(),new Golpe(),new Golpe(),new Golpe()));
-        Jefe jefe =new Jefe("null", 30);
+        Jefe jefe =new Jefe("El malo", 30, new EstrategiaFija(), new EstrategiaFija(), 0);
         Partida partida=new Partida(jugador, jefe, mazo);
         ObservadorNumeros observadorNumeros=new ObservadorNumeros();
         partida.agregarObservador(observadorNumeros);

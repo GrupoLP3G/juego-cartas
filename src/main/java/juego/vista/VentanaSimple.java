@@ -65,8 +65,10 @@ public class VentanaSimple extends JFrame implements ObservadorPartida
     {
         this.etiquetaJugador.setText("Vida:"+partida.getJugador().getVida()+" Escudo:"+partida.getJugador().getEscudo()
         +" Energia:"+partida.getJugador().getEnergia()+" Veneno:"+partida.getJugador().getMarcasVeneno());
-        this.etiquetaJefe.setText(partida.getJefe().getNombre()+":"+" Vida:"+partida.getJefe().getVida()+
-        ". Intencion:"+partida.getJefe().getIntencion().getDescripcion());
+        String textoJefe=partida.getJefe().getNombre()+":"+" Vida:"+partida.getJefe().getVida()+
+        ". Intencion:"+partida.getJefe().getIntencion().getDescripcion();
+        if(partida.getJefe().estaEnRabia()){textoJefe=textoJefe+"ESTA2 FURIOSO";}
+        this.etiquetaJefe.setText(textoJefe);
         this.panelCartas.removeAll();
         List<Carta> mano = partida.getJugador().getMano();
         for (int i = 0; i < mano.size(); i++)

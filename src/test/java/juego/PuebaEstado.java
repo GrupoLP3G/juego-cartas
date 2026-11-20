@@ -7,6 +7,7 @@ import juego.excepciones.JuegoException;
 import juego.modelo.EstadoPartida;
 import juego.modelo.Jugador;
 import juego.modelo.Mazo;
+import juego.modelo.jefes.EstrategiaFija;
 import juego.modelo.jefes.Jefe;
 public class PuebaEstado 
 {
@@ -15,7 +16,7 @@ public class PuebaEstado
         ObservadorPartida observadorBitacora=new ObservadorBitacora();
         ObservadorPartida observadorNumeros=new ObservadorNumeros();
         Jugador jugador = new Jugador("Fern");
-        Jefe jefe =new Jefe("El malo ", 30);
+        Jefe jefe =new Jefe("El malo", 30, new EstrategiaFija(), new EstrategiaFija(), 0);
         Mazo mazo =new Mazo(List.of(new Golpe(),new Golpe(),new Golpe(),new Golpe(),new Golpe(),new Golpe()));
         Partida partida=new Partida(jugador, jefe, mazo);    
         partida.agregarObservador(observadorNumeros);

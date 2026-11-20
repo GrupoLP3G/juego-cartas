@@ -11,6 +11,7 @@ import juego.modelo.Partida;
 import juego.modelo.cartas.Escudo;
 import juego.modelo.cartas.Golpe;
 import juego.modelo.cartas.Pocion;
+import juego.modelo.jefes.CatalogoJefes;
 import juego.modelo.jefes.Jefe;
 import juego.vista.VentanaSimple;
 
@@ -21,7 +22,7 @@ public class Main {
         SwingUtilities.invokeLater(()->
         {
             Jugador jugador=new Jugador("Fer");
-            Jefe jefe=new Jefe("el malo", 50);
+            Jefe jefe=CatalogoJefes.crearAgresivo();
             Mazo mazo=new Mazo(List.of(new Golpe(),new Golpe(),new Golpe(),new Pocion(),new Pocion(),new Pocion(),
             new Escudo(),new Escudo(),new Escudo() ));
             Partida partida=new Partida(jugador, jefe, mazo);
