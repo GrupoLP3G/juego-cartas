@@ -33,11 +33,18 @@ public class Partida
         if(this.jugador.getMarcasVeneno()>0)
         {
             this.jugador.perderVida(this.jugador.getMarcasVeneno());
-            registrar("El veneno te quito "+this.jugador.getMarcasVeneno());
+            registrar("El veneno te quito de "+this.jugador.getMarcasVeneno()+" vida");
         }
         anunciarFinSiTermino();
+        if (isTerminada())
+        {
+            notificarCambio();
+            return;
+        }
         robarCartas(CARTAS_EN_MANO-this.jugador.getMano().size());
+        this.jefe.decidirIntencion();
         registrar("Comienza el turno "+this.turno);
+        registrar(this.jefe.getNombre()+" prepara: "+this.jefe.getIntencion().getDescripcion());
         notificarCambio();
     }
     public void jugarCarta(int posicion) throws JuegoException
@@ -57,7 +64,7 @@ public class Partida
     public void terminarTurno()throws PartidaTerminadaException
     {
         if(isTerminada())throw new PartidaTerminadaException();
-        daniarJugador(5); //TEMPORAL hasta que los jefes ya tengan su estrategia
+        this.jefe.getIntencion().ejecutar(this);
         if(isTerminada())
         {
             anunciarFinSiTermino();
