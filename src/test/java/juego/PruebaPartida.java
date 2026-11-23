@@ -8,7 +8,6 @@ import java.util.List;
 import juego.excepciones.JuegoException;
 import juego.modelo.Jugador;
 import juego.modelo.Mazo;
-import juego.modelo.jefes.EstrategiaFija;
 import juego.modelo.jefes.Jefe;
 public class PruebaPartida 
 {

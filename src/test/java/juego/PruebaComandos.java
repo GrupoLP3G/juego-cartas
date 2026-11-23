@@ -10,7 +10,6 @@ import juego.modelo.Jugador;
 import juego.modelo.Mazo;
 import juego.modelo.Partida;
 import juego.modelo.cartas.Golpe;
-import juego.modelo.jefes.EstrategiaFija;
 import juego.modelo.jefes.Jefe;
 
 public class PruebaComandos 

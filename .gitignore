@@ -3,3 +3,5 @@ datos/*.csv
 .vscode/
 .idea/
 *.class
+datos/*.db
+dependency-reduced-pom.xml

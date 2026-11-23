@@ -7,9 +7,8 @@ import juego.excepciones.JuegoException;
 import juego.modelo.EstadoPartida;
 import juego.modelo.Jugador;
 import juego.modelo.Mazo;
-import juego.modelo.jefes.EstrategiaFija;
 import juego.modelo.jefes.Jefe;
-public class PuebaEstado 
+public class PruebaEstado 
 {
     public static void main(String[] args) throws JuegoException 
     {
