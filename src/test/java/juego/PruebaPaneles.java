@@ -17,6 +17,7 @@ import juego.modelo.jefes.CatalogoJefes;
 import juego.vista.PanelJugador;
 import juego.vista.PanelJefe;
 import juego.vista.PanelMano;
+import juego.vista.PanelBitacora;
 
 public class PruebaPaneles {
 
@@ -34,7 +35,9 @@ public class PruebaPaneles {
             partida.agregarObservador(panelJugador);
             partida.agregarObservador(panelJefe);
             partida.agregarObservador(panelMano);
-            controlador.iniciar();
+            PanelBitacora panelBitacora = new PanelBitacora();
+	    partida.agregarObservador(panelBitacora);
+	    controlador.iniciar();
 
             JPanel estados = new JPanel(new GridLayout(1, 2, 8, 0));
             estados.add(panelJugador);
@@ -42,7 +45,8 @@ public class PruebaPaneles {
 
             JFrame ventana = new JFrame("Prueba de los tres paneles");
             ventana.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            ventana.add(estados, BorderLayout.CENTER);
+            ventana.add(estados, BorderLayout.NORTH);
+            ventana.add(panelBitacora, BorderLayout.CENTER);
             ventana.add(panelMano, BorderLayout.SOUTH);
             ventana.pack();
             ventana.setLocationRelativeTo(null);
