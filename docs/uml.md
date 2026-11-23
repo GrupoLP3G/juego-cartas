@@ -186,3 +186,51 @@ classDiagram
 ```
 
 Roles: `Comando` es el comando, `JugarCartaComando` el comando concreto, `HistorialComandos` el invocador (guarda y ejecuta los comandos) y `Partida` el receptor (la que hace el trabajo real). `ControladorJuego` es el cliente que arma los comandos. Cada jugada es un objeto con su foto de antes y de después, por eso se puede deshacer y rehacer. Sin el patrón, el controlador tendría que recordar a mano cómo revertir cada jugada.
+
+## 5. Vista general (MVC)
+
+```mermaid
+classDiagram
+    namespace juego_modelo {
+        class Partida
+        class Jugador
+        class Mazo
+        class EstadoPartida
+        class ObservadorPartida {
+            <<interface>>
+        }
+    }
+    namespace juego_modelo_cartas {
+        class Carta {
+            <<abstract>>
+        }
+    }
+    namespace juego_modelo_jefes {
+        class Jefe
+    }
+    namespace juego_comandos {
+        class Comando {
+            <<interface>>
+        }
+        class HistorialComandos
+    }
+    namespace juego_controlador {
+        class ControladorJuego
+    }
+    namespace juego_vista {
+        class VentanaSimple
+    }
+
+    VentanaSimple --> ControladorJuego : usa
+    VentanaSimple ..|> ObservadorPartida
+    ControladorJuego --> Partida : partida
+    ControladorJuego --> HistorialComandos : historial
+    HistorialComandos o--> Comando
+    Partida --> Jugador : jugador
+    Partida --> Jefe : jefe
+    Partida --> Mazo : mazo
+    Partida o--> ObservadorPartida : observadores
+    Mazo o--> Carta
+```
+
+MVC: el modelo (`Partida`, `Jugador`, `Mazo`, cartas y jefes) no depende de la vista; solo conoce la interfaz `ObservadorPartida`. La vista (`VentanaSimple`) muestra la partida y manda las acciones al controlador, que las convierte en comandos y llama al modelo.
