@@ -94,3 +94,36 @@ classDiagram
 ```
 
 Roles: `Jefe` es el contexto, `EstrategiaJefe` la estrategia y `EstrategiaAgresivaNormal` y `EstrategiaAgresivaRabia` las estrategias concretas. `Jefe` elige una según su vida (`estaEnRabia`) y le delega la decisión, así que no tiene `if` por tipo de jefe. Cada estrategia devuelve una `AccionJefe`.
+
+## 3. Observer
+
+```mermaid
+classDiagram
+    class Partida {
+        -List~ObservadorPartida~ observadores
+        +agregarObservador(ObservadorPartida observador)
+        +quitarObservador(ObservadorPartida observador)
+        +registrar(String mensaje)
+        -notificarCambio()
+    }
+    class ObservadorPartida {
+        <<interface>>
+        +alCambiarPartida(Partida partida)
+        +alRegistrarMensaje(String mensaje)
+    }
+    class VentanaSimple {
+        -ControladorJuego controlador
+        +alCambiarPartida(Partida partida)
+        +alRegistrarMensaje(String mensaje)
+    }
+    class JFrame
+    class ControladorJuego
+
+    Partida o--> ObservadorPartida : observadores
+    ObservadorPartida <|.. VentanaSimple
+    JFrame <|-- VentanaSimple
+    VentanaSimple --> ControladorJuego : controlador
+    ObservadorPartida ..> Partida : lee al cambiar
+```
+
+Roles: `Partida` es el sujeto y `ObservadorPartida` el observador. `VentanaSimple` es un observador concreto. `Partida` avisa a todos sus observadores cuando cambia (`alCambiarPartida`) o cuando hay un mensaje (`alRegistrarMensaje`), sin saber qué clase son. Sin el patrón, `Partida` tendría que conocer y llamar directamente a la ventana, y el modelo dependería de la vista.
