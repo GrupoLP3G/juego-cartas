@@ -13,6 +13,9 @@ public class VentanaPrincipal extends JFrame implements ObservadorPartida {
 
     public VentanaPrincipal(Partida partida, ControladorJuego controlador) {
         super("Juego de cartas");
+        MenuAcciones menuAcciones = new MenuAcciones(controlador);
+        setJMenuBar(menuAcciones);
+        partida.agregarObservador(menuAcciones);
 
         PanelJugador panelJugador = new PanelJugador();
         PanelJefe panelJefe = new PanelJefe();
