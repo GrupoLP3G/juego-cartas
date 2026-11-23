@@ -14,5 +14,5 @@ public class Atacar implements AccionJefe
     @Override 
     public void ejecutar(Partida partida){partida.daniarJugador(danio);}
     @Override 
-    public String getDescripcion(){return this.nombre+"  "+ this.danio;}
+    public String getDescripcion(){return this.nombre+" "+ this.danio;}
 }

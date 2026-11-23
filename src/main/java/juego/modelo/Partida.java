@@ -64,6 +64,7 @@ public class Partida
     public void terminarTurno()throws PartidaTerminadaException
     {
         if(isTerminada())throw new PartidaTerminadaException();
+        this.jefe.perderDefensas();
         this.jefe.getIntencion().ejecutar(this);
         if(isTerminada())
         {
@@ -81,6 +82,23 @@ public class Partida
         boolean estaEnRabia=this.jefe.estaEnRabia();
         registrar("Hiciste "+danioFinal+" de daño a "+this.jefe.getNombre());
         if(!estabaEnRabia&& estaEnRabia)registrar(this.jefe.getNombre()+" se enojo");
+        if(this.jefe.isEnGuardia())
+        {
+            int danioDevuelto=danioFinal/2;
+            this.jugador.recibirDanio(danioDevuelto);
+            registrar(this.jefe.getNombre()+" te regreso "+danioDevuelto+" de daño");
+        }
+
+    }
+    public void blindarJefe(int cantidad)
+    {
+        this.jefe.agregarArmadura(cantidad);
+        registrar(this.jefe.getNombre()+" gana "+cantidad+" de armadura");
+    }
+    public void ponerJefeEnGuardia()
+    {
+        this.jefe.ponerseEnGuardia();
+        registrar(this.jefe.getNombre()+" se pone en guardia");
     }
     public void agregarEscudo(int cantidad)
     {

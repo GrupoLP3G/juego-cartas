@@ -9,8 +9,8 @@ public class EstrategiaAgresivaNormal implements EstrategiaJefe
     {
         if(jugador.getVida()<=10)
         {
-            return new Atacar("Golpe Brutal ", 10);
+            return new Atacar(" Golpe Brutal ", 10);
         }
-        return new Atacar("Martillazo ", 8);
+        return new Atacar(" Martillazo ", 8);
     }    
 }

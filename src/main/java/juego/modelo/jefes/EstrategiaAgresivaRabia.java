@@ -7,6 +7,6 @@ public class EstrategiaAgresivaRabia implements EstrategiaJefe
     @Override
     public AccionJefe elegirAccion(Jefe jefe,Jugador jugador)
     {
-        return new AtaqueDoble("Super ataque", 6);
+        return new AtaqueDoble(" Super ataque ", 6);
     }    
 }
