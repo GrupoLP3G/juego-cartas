@@ -127,3 +127,62 @@ classDiagram
 ```
 
 Roles: `Partida` es el sujeto y `ObservadorPartida` el observador. `VentanaSimple` es un observador concreto. `Partida` avisa a todos sus observadores cuando cambia (`alCambiarPartida`) o cuando hay un mensaje (`alRegistrarMensaje`), sin saber qué clase son. Sin el patrón, `Partida` tendría que conocer y llamar directamente a la ventana, y el modelo dependería de la vista.
+
+## 4. Command
+
+```mermaid
+classDiagram
+    class Comando {
+        <<interface>>
+        +ejecutar() void
+        +deshacer() void
+    }
+    class JugarCartaComando {
+        -Partida partida
+        -int posicion
+        -EstadoPartida estadoAntes
+        -EstadoPartida estadoDespues
+        +ejecutar() void
+        +deshacer() void
+    }
+    class HistorialComandos {
+        -Deque~Comando~ pilaDeshacer
+        -Deque~Comando~ pilaRehacer
+        +ejecutar(Comando comando) void
+        +deshacer() void
+        +rehacer() void
+        +puedeDeshacer() boolean
+        +puedeRehacer() boolean
+        +limpiar() void
+    }
+    class EstadoPartida {
+        +getJugador() Jugador
+        +getJefe() Jefe
+        +getMazo() Mazo
+        +getTurno() int
+    }
+    class ControladorJuego {
+        -Partida partida
+        -HistorialComandos historial
+        +jugarCarta(int posicion) void
+        +deshacer() void
+        +rehacer() void
+    }
+    class Partida {
+        +jugarCarta(int posicion) void
+        +guardarEstado() EstadoPartida
+        +restaurarEstado(EstadoPartida estado) void
+        +registrar(String mensaje) void
+    }
+
+    Comando <|.. JugarCartaComando
+    HistorialComandos o--> Comando : pilaDeshacer y pilaRehacer
+    JugarCartaComando --> Partida : partida
+    JugarCartaComando --> EstadoPartida : estadoAntes y estadoDespues
+    ControladorJuego --> HistorialComandos : historial
+    ControladorJuego --> Partida : partida
+    ControladorJuego ..> JugarCartaComando : crea
+    Partida ..> EstadoPartida : crea
+```
+
+Roles: `Comando` es el comando, `JugarCartaComando` el comando concreto, `HistorialComandos` el invocador (guarda y ejecuta los comandos) y `Partida` el receptor (la que hace el trabajo real). `ControladorJuego` es el cliente que arma los comandos. Cada jugada es un objeto con su foto de antes y de después, por eso se puede deshacer y rehacer. Sin el patrón, el controlador tendría que recordar a mano cómo revertir cada jugada.
