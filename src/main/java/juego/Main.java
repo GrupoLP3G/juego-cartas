@@ -1,9 +1,6 @@
 package juego;
-
 import java.util.List;
-
 import javax.swing.SwingUtilities;
-
 import juego.controlador.ControladorJuego;
 import juego.modelo.Jugador;
 import juego.modelo.Mazo;
@@ -14,9 +11,7 @@ import juego.modelo.cartas.Pocion;
 import juego.modelo.jefes.CatalogoJefes;
 import juego.modelo.jefes.Jefe;
 import juego.vista.VentanaSimple;
-
 public class Main {
-
     public static void main(String[] args) 
     {
         SwingUtilities.invokeLater(()->

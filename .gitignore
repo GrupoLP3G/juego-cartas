@@ -5,3 +5,4 @@ datos/*.csv
 *.class
 datos/*.db
 dependency-reduced-pom.xml
+*.zip
