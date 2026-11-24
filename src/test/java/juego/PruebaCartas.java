@@ -13,7 +13,6 @@ import juego.modelo.cartas.GolpeDoble;
 import juego.modelo.cartas.GolpeFuerte;
 import juego.modelo.cartas.Muro;
 import juego.modelo.cartas.Robo;
-import juego.modelo.jefes.EstrategiaFija;
 import juego.modelo.jefes.Jefe;
 
 public class PruebaCartas
@@ -23,7 +22,7 @@ public class PruebaCartas
         Jugador jugador = new Jugador("Fer");
         Jefe jefe = new Jefe("El malo", 100, new EstrategiaFija(), new EstrategiaFija(), 0);
         Mazo mazo = new Mazo(List.of(new Golpe(), new Golpe(), new Golpe(), new Golpe(), new Golpe(),
-                new Golpe(), new Golpe(), new Golpe(), new Golpe(), new Golpe()));
+        new Golpe(), new Golpe(), new Golpe(), new Golpe(), new Golpe()));
         Partida partida = new Partida(jugador, jefe, mazo);
         partida.agregarObservador(numeros);
         partida.agregarObservador(bitacora);
