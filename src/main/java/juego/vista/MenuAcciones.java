@@ -27,6 +27,18 @@ public class MenuAcciones extends JMenuBar implements ObservadorPartida {
         rehacer.addActionListener(evento -> controlador.rehacer());
 
         acciones.add(deshacer);
+        JMenuItem verHistorial = new JMenuItem("Ver historial");
+        verHistorial.addActionListener(evento -> {
+            PanelHistorial panel = new PanelHistorial();
+            String[] columnas = {"Jugador", "Jefe", "Resultado", "Turnos"};
+            panel.mostrarHistorial(columnas, new Object[0][]);
+
+            JOptionPane.showMessageDialog(this, panel,
+                    "Historial de partidas", JOptionPane.PLAIN_MESSAGE);
+        });
+
+        acciones.addSeparator();
+        acciones.add(verHistorial);
         acciones.add(rehacer);
         add(acciones);
 
@@ -46,6 +58,6 @@ public class MenuAcciones extends JMenuBar implements ObservadorPartida {
 
     @Override
     public void alRegistrarMensaje(String mensaje) {
-        // Los mensajes los muestra la bitácora.
+ 	       // Los mensajes los muestra la bitácora.
     }
 }
